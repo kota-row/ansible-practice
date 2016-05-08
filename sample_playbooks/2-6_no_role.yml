@@ -1,0 +1,35 @@
+---
+- name: applicationAのセットアップ
+  hosts: ubuntu01
+  tasks:
+    - name: rubyをインストール
+      apt: name=ruby state=installed
+
+    - name: mysqlをインストール
+      apt: name=mysql-server state=installed
+
+    - name: mysqlを再起動し、サービスの自動起動を有効化
+      service: name=mysql state=restarted enabled=yes
+
+    - name: applicationAのソースコードをgithubから取得
+      git:
+        repo: https://github.com/kota-row/ansible-practice-sample-application.git
+        dest: /opt/appcationA
+
+- name: applicationBのセットアップ
+  hosts: ubuntu02
+  tasks:
+    - name: rubyをインストール
+      apt: name=ruby state=installed
+
+    - name: mysqlをインストール
+      apt: name=mysql-server state=installed
+
+    - name: mysqlを再起動し、サービスの自動起動を有効化
+      service: name=mysql state=restarted enabled=yes
+
+    - name: applicationBのソースコードをgithubから取得
+      git:
+        repo: https://github.com/kota-row/ansible-practice-sample-application.git
+        dest: /opt/appcationB
+

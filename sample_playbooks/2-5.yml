@@ -1,0 +1,22 @@
+---
+- name: Webサーバーのセットアップ
+  hosts: webservers
+  tasks:
+    - name: apacheをインストール
+      apt: name=apache2 state=installed
+      become: true
+
+    - name: apacheを再起動し、サービスの自動起動を有効化
+      service: name=apache2 state=restarted enabled=yes
+      become: true
+
+- name: DBサーバーのセットアップ
+  hosts: dbservers
+  tasks:
+    - name: mysqlをインストール
+      apt: name=mysql-server state=installed
+      become: true
+
+    - name: mysqlを再起動し、サービスの自動起動を有効化
+      service: name=mysql state=restarted enabled=yes
+      become: true

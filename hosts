@@ -1,0 +1,6 @@
+[webservers]
+ubuntu01 ansible_host=192.168.33.10
+
+[dbservers]
+ubuntu02 ansible_host=192.168.33.20
+
